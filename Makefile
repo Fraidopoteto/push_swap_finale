@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+         #
+#    By: Furaido <Furaido@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 14:22:55 by joschmun          #+#    #+#              #
-#    Updated: 2024/12/04 14:28:09 by joschmun         ###   ########.fr        #
+#    Updated: 2024/12/12 13:40:10 by Furaido          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Quell- und Objektdateien
-SRCS = push_swap.c operations.c utils00.c utils01.c utils02.c main.c select_sort.c
+SRCS = push_swap.c operations.c utils00.c utils01.c utils02.c main.c select_sort.c \
+utils03.c
 OBJS = $(SRCS:.c=.o)
 
 # Pfad zu libft

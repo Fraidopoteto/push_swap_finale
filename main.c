@@ -18,23 +18,25 @@ int	*init_arguments(int argc, char **argv, int *arg_count)
 
 	*arg_count = argc - 1;
 	arg_simple = NULL;
-	if (argc == 2)
+	if (argc == 2 && ft_check_space(argv) && ft_check_double_space(argv))
 		arg_simple = ft_swap_str(argv);
-	else if (argc > 2)
+	else if (argc >= 2)
 		arg_simple = ft_simplify(ft_convert(argv, *arg_count), *arg_count);
-	if ((ft_sort_check(arg_simple) || ft_check_double(arg_simple)) \
-	&& (ft_numlen(arg_simple) > 1))
+	if (arg_simple == NULL)
 	{
-		write(1, "Error\n", 6);
+		perror("Error\n");
+		free (arg_simple);
+		return (NULL);
+	}
+	if ((ft_sort_check(arg_simple) || ft_check_double(arg_simple)) \
+	&& ft_numlen(arg_simple) > 1)
+	{
+		if (!ft_sort_check(arg_simple))
+			perror("Error\n");
+		free (arg_simple);
 		return (NULL);
 	}
 	return (arg_simple);
-}
-
-void	ft_sort_two(int *stack)
-{
-	if (stack[0] > stack[1])
-		ft_swap(stack, 'a');
 }
 
 void	ft_sort(int *arg_simple, int *stack_b)
@@ -61,19 +63,18 @@ int	main(int argc, char **argv)
 	int	*arg_simple;
 	int	*stack_b;
 
+	arg_count = 0;
 	if (argc < 2)
 		return (0);
 	if (argv[1][0] == '\0')
 		return (0);
 	arg_simple = init_arguments(argc, argv, &arg_count);
-	if (!arg_simple)
-	{
-		free (arg_simple);
+	if (arg_simple == NULL)
 		return (1);
-	}
 	stack_b = calloc((ft_numlen(arg_simple) + 1), sizeof(int));
-	if (!stack_b)
+	if (stack_b == NULL)
 	{
+		free (stack_b);
 		free(arg_simple);
 		return (1);
 	}

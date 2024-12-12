@@ -17,10 +17,12 @@ int	*ft_convert(char **argv, int arg_count)
 	int	*arg_value;
 	int	i;
 
+	i = 0;
+	if (ft_num_check(argv))
+		return (NULL);
 	arg_value = malloc(arg_count * sizeof(int));
 	if (!arg_value)
 		return (NULL);
-	i = 0;
 	while (arg_count > i)
 	{
 		arg_value[i] = ft_atoi(argv[i + 1]);
@@ -28,15 +30,20 @@ int	*ft_convert(char **argv, int arg_count)
 	}
 	return (arg_value);
 }
-
+void	ft_init_simplify(t_indices *indices)
+{
+	indices->value = 1;
+	indices->position = 0;
+	indices->checker = 0;
+}
 int	*ft_simplify(int *arg_value, int arg_count)
 {
-	int					*arg_simple;
-	t_indices_simplify	indices;
+	int		*arg_simple;
+	t_indices	indices;
 
-	indices.value = 1;
-	indices.position = 0;
-	indices.checker = 0;
+	ft_init_simplify(&indices);
+	if (arg_value == NULL)
+		return (NULL);
 	arg_simple = malloc((arg_count + 1) * sizeof(int));
 	arg_simple[arg_count] = 0;
 	if (!arg_simple)

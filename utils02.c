@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils02.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Furaido <Furaido@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 20:44:58 by joschmun          #+#    #+#             */
-/*   Updated: 2024/12/10 16:06:00 by joschmun         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:46:15 by Furaido          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ char	**ft_split_swap(char **argv)
 	char	**temp;
 
 	temp = ft_split(argv[1], ' ');
-	if (ft_num_check(temp) == 1)
-		return (NULL);
 	return (temp);
 }
 
@@ -40,6 +38,8 @@ int	*ft_convert_split(char **argv, int size)
 	int	*arg_value;
 	int	i;
 
+	if (ft_num_check_split(argv))
+		return (NULL);
 	arg_value = malloc(size * sizeof(int));
 	if (!arg_value)
 		return (NULL);
@@ -71,13 +71,18 @@ int	*ft_swap_str(char **argv)
 
 	i = 0;
 	temp = ft_split_swap(argv);
+	size = ft_arraylen(temp);
 	if (temp == NULL)
 	{
 		free (temp);
 		return (NULL);
 	}
-	size = ft_arraylen(temp);
 	arg_simple = ft_simplify(ft_convert_split(temp, size), size);
+	while (i < size)
+	{
+		free (temp[i]);
+		i++;
+	}
 	free (temp);
 	return (arg_simple);
 }
