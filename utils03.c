@@ -6,7 +6,7 @@
 /*   By: Furaido <Furaido@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:15:29 by Furaido           #+#    #+#             */
-/*   Updated: 2024/12/12 13:58:18 by Furaido          ###   ########.fr       */
+/*   Updated: 2024/12/12 14:31:28 by Furaido          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int		ft_check_double_space(char **argv)
 	}
 	return (1);
 }
+
 void ft_move_to_stack_b(int *stack_a, int *stack_b, int j, int pivet)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack_a[i] != j)
@@ -64,4 +65,11 @@ void ft_move_to_stack_b(int *stack_a, int *stack_b, int j, int pivet)
 			ft_rotate(stack_a, 'a');
 	}
 	ft_push_1_to_2(stack_a, stack_b, 'b');
+}
+
+void	ft_init_simplify(t_indices *indices)
+{
+	indices->value = 1;
+	indices->position = 0;
+	indices->checker = 0;
 }

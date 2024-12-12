@@ -30,15 +30,10 @@ int	*ft_convert(char **argv, int arg_count)
 	}
 	return (arg_value);
 }
-void	ft_init_simplify(t_indices *indices)
-{
-	indices->value = 1;
-	indices->position = 0;
-	indices->checker = 0;
-}
+
 int	*ft_simplify(int *arg_value, int arg_count)
 {
-	int		*arg_simple;
+	int			*arg_simple;
 	t_indices	indices;
 
 	ft_init_simplify(&indices);
